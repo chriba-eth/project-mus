@@ -1,3 +1,16 @@
 body{
   background-color: red;
 }
+
+header{
+  background-color: green;
+  color: white;
+  position: fixed;
+  width: 100%;
+  padding: 10px;
+  text-align: center;
+  margin-bottom: 50;
+  margin-top: 0;
+  top: 0;
+  left: 0;
+}
