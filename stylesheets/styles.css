@@ -2,6 +2,8 @@ body{
   background-color: darkgreen;
 }
 
+
+
 header{
   background-color: green;
   color: white;
@@ -13,4 +15,10 @@ header{
   margin-top: 0;
   top: 0;
   left: 0;
+}
+
+textarea {
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 10px;
 }
