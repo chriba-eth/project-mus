@@ -2,32 +2,27 @@ import webapp2
 import os
 import jinja2
 
+
 from google.appengine.ext import ndb
 
 jinja_environment = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))
 
-class Search(ndb.Model):
-#    artist = ndb.StringProperty()
-    genres = ndb.StringProperty()
-    region = ndb.StringProperty()
+
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
-        search = Search.query().fetch()
+
         template = jinja_environment.get_template("templates/home.html")
-        template_vars = {
-            'search': search
-        }
-#       test
-        self.response.write(template.render(template_vars))
+        self.response.write(template.render())
 
     def post(self):
-        genres = self.request.get('genres')
-        region = self.request.get('region')
-        search = Search(genres = genres, region = region)
-        region.put()
-        self.redirect('/')
+        result_vars = {
+            'genres' :self.request.get('genres'),
+            'region' : self.request.get('region')
+        }
+        template = jinja_environment.get_template("templates/results.html")
+        self.response.write(template.render(result_vars))
 #
 #
 # class FilterHandler(webapp2.RequestHandler):
