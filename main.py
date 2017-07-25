@@ -12,7 +12,6 @@ jinja_environment = jinja2.Environment(
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
-
         template = jinja_environment.get_template("templates/home.html")
         self.response.write(template.render())
 
@@ -23,6 +22,7 @@ class MainHandler(webapp2.RequestHandler):
         }
         template = jinja_environment.get_template("templates/results.html")
         self.response.write(template.render(result_vars))
+
 #
 #
 # class FilterHandler(webapp2.RequestHandler):
