@@ -15,16 +15,20 @@ class Search(ndb.Model):
 class MainHandler(webapp2.RequestHandler):
     def get(self):
         search = Search.query().fetch()
-        template = jinja_environment.get_template("templates/home.html")
         template_vars = {
             'search': search
         }
-#       test
+        template = jinja_environment.get_template("templates/home.html")
         self.response.write(template.render(template_vars))
 
     def post(self):
         genres = self.request.get('genres')
         region = self.request.get('region')
+        results_vars = {
+            'genres': genres,
+            'region': region
+
+        }
         search = Search(genres = genres, region = region)
         region.put()
         self.redirect('/')
