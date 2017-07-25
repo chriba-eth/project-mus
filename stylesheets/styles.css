@@ -1,11 +1,10 @@
 body{
-  background-color: darkgreen;
+  background-color: #049372;
 }
 
 
-
 header{
-  background-color: green;
+  background-color: #336E7B;
   color: white;
   position: fixed;
   width: 100%;
@@ -15,10 +14,17 @@ header{
   margin-top: 0;
   top: 0;
   left: 0;
+  font-family: roboto, sans-serif;
+  font-weight: lighter;
+  font-size: 15px;
 }
 
 textarea {
-    -webkit-border-radius: 0px;
-    -moz-border-radius: 0px;
     border-radius: 10px;
+    resize: none;
+    border: none;
+}
+
+#logo{
+  position: relative;
 }
