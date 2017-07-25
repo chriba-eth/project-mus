@@ -11,16 +11,17 @@ jinja_environment = jinja2.Environment(
 #     genres = ndb.StringProperty()
 #     region = ndb.StringProperty()
 #
-# class MainHandler(webapp2.RequestHandler):
-#     def get(self):
-#         template = jinja_environment.get_template("templates/home.html")
+class MainHandler(webapp2.RequestHandler):
+    def get(self):
+        template = jinja_environment.get_template("templates/home.html")
+        self.response.write(template.render())
 #
 #         template_vars = {
 #             'artist': artist,
 #             'genres': genres,
 #             'region': regions
 #         }
-#         self.response.write(template.render(template_vars))
+#
 #
 # class FilterHandler(webapp2.RequestHandler):
 #     def get(self):
