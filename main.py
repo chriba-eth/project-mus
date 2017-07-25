@@ -16,7 +16,7 @@ class MainHandler(webapp2.RequestHandler):
 
     def post(self):
         result_vars = {
-            'genres' :self.request.get('genres'),
+            'artist' :self.request.get('artist'),
             'region' : self.request.get('region')
         }
         template = jinja_environment.get_template("templates/results.html")
