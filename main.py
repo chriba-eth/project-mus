@@ -19,7 +19,7 @@ class MainHandler(webapp2.RequestHandler):
         }
         template = jinja_environment.get_template("templates/home.html")
         self.response.write(template.render())
-#
+#       test
 #         template_vars = {
 #             'artist': artist,
 #             'genres': genres,
