@@ -8,6 +8,10 @@ jinja_environment = jinja2.Environment(
 #
 class MainHandler(webapp2.RequestHandler):
     def get(self):
+        genre = self.request.get('genre')
+        template_vars = {
+            'genre': genre
+        }
         template = jinja_environment.get_template("templates/home.html")
         self.response.write(template.render())
 #
