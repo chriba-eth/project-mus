@@ -69,6 +69,8 @@ class ResultsHandler(webapp2.RequestHandler):
             q=self.request.get('region') + self.request.get('artist'),
             part="id,snippet",
             type = "video",
+            videoDuration = "short",
+            videoEmbeddable = "true",
             maxResults=1,
           ).execute()
 
