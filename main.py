@@ -55,8 +55,8 @@ class ResultsHandler(webapp2.RequestHandler):
         youtube = build(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION, developerKey=DEVELOPER_KEY)
 
         search_response = youtube.search().list(
-            q=self.request.get('artist'),
-            part="id",
+            q=self.request.get('region') + self.request.get('artist'),
+            part="id,snippet",
             type = "video",
             maxResults=1,
           ).execute()
