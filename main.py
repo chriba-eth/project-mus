@@ -1,9 +1,26 @@
 import webapp2
 import os
 import jinja2
-import spotipy
+
 
 from google.appengine.ext import ndb
+from apiclient.discovery import build
+
+
+# Set DEVELOPER_KEY to the API key value from the APIs & auth > Registered apps
+# tab of
+#   https://cloud.google.com/console
+# Please ensure that you have enabled the YouTube Data API for your project.
+
+
+DEVELOPER_KEY = "AIzaSyBUemp0rfndbXxXm4hM2MzSGm-b0PxlVH4"
+YOUTUBE_API_SERVICE_NAME = "youtube"
+YOUTUBE_API_VERSION = "v3"
+
+
+
+
+
 
 jinja_environment = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)))
@@ -18,9 +35,20 @@ class MainHandler(webapp2.RequestHandler):
 
 class ResultsHandler(webapp2.RequestHandler):
     def post(self):
+        youtube = build(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION, developerKey=DEVELOPER_KEY)
+
+        search_response = youtube.search().list(
+            q=self.request.get('artist'),
+            part="id",
+            type = "video",
+            maxResults=1,
+          ).execute()
+
         result_vars = {
             'artist' :self.request.get('artist'),
-            'region' : self.request.get('region')
+            'region' : self.request.get('region'),
+            'search_response' : search_response
+
         }
         template = jinja_environment.get_template("templates/results.html")
         self.response.write(template.render(result_vars))
