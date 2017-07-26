@@ -1,12 +1,45 @@
-<title>MÜS</title>
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="stylesheets/styles.css" rel="stylesheet">
+    <title>Account Page</title>
+  </head>
+  <body>
 
-<h1>Welcome MÜ !</h1>
-{% if current_user %}
+    <header>
+      <div id = "userInfo">
+        {% if current_user %}
+        Welcome, {{current_user}}!
+        <a href= "{{logout_url}}">Log Out</a><br>
+        <a href ="http://localhost:19080/login">Account</a><br>
 
-<p> Welcome, {{current_user}}!</p>
+        {% else %}
+        <a href="{{login_url}}">Log In</a><br>
+        {% endif %}
+      </div>
 
-<a href= "{{logout_url}}">Log Out</a><br>
+      <img if = "logo" src="images/logo.png" width="100" height"100" alt="müs logo">
 
-{% else %}
+      <form method = 'post' action = "/results">
+        <textarea rows = '1' cols = '50' name = "artist" placeholder = "Who is your favorite artist?"></textarea><br>
+        <input type = "radio" name = "region" value = "Latin American ">Latin America
+        <input type = "radio" name = "region" value = "Brasileiro ">Brazil
+        <input type = "radio" name = "region" value = "Francais ">France
+        <input type = "radio" name = "region" value = "German ">Germany
+        <input type = "radio" name = "region" value = "Indian ">India
+        <input type = "radio" name = "region" value = "J ">Japan
+        <input type = "radio" name = "region" value = "K ">Korea
+        <input type = "radio" name = "region" value = "African ">Africa<br>
+        <button class = "submit">Submit</button>
+      </form>
+    </header></p>
 
-<a href="{{login_url}}">Log In</a><br>
+    <h1>Welcome to MÜS !</h1>
+    {% if current_user %}
+    <p> Welcome, {{current_user}}!</p>
+    <a href= "{{logout_url}}">Log Out</a><br>
+    {% else %}
+    <a href="{{login_url}}">Log In</a><br>
+    {% endif %}
+  </body>
+</html>

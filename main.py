@@ -103,5 +103,6 @@ class ResultsHandler(webapp2.RequestHandler):
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
-    ('/results', ResultsHandler)
+    ('/results', ResultsHandler),
+    ('/login', LoginHandler)
 ], debug=True)
