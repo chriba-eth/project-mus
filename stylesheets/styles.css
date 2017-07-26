@@ -1,5 +1,6 @@
 body{
   background-color: #049372;
+  margin:0;
 }
 
 
@@ -7,7 +8,6 @@ header{
   background-color: #336E7B;
   color: white;
 
-  width: 100%;
   padding: 10px;
   text-align: center;
   margin-bottom: 50;
@@ -28,4 +28,7 @@ textarea {
 #logo{
   position: relative;
 }
- 
+
+#userInfo{
+  text-align: right;
+}
