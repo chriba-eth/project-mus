@@ -15,6 +15,8 @@ class MainHandler(webapp2.RequestHandler):
         template = jinja_environment.get_template("templates/home.html")
         self.response.write(template.render())
 
+
+class ResultsHandler(webapp2.RequestHandler):
     def post(self):
         result_vars = {
             'artist' :self.request.get('artist'),
@@ -22,6 +24,7 @@ class MainHandler(webapp2.RequestHandler):
         }
         template = jinja_environment.get_template("templates/results.html")
         self.response.write(template.render(result_vars))
+
 
 #
 #
@@ -41,5 +44,6 @@ class MainHandler(webapp2.RequestHandler):
 #         self.response.write(template.render())
 
 app = webapp2.WSGIApplication([
-    ('/', MainHandler)
+    ('/', MainHandler),
+    ('/results', ResultsHandler)
 ], debug=True)
