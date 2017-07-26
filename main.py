@@ -67,17 +67,23 @@ class ResultsHandler(webapp2.RequestHandler):
 
         search_response = youtube.search().list(
             q=self.request.get('region') + self.request.get('artist'),
-            part="id,snippet",
+            part= "id",
             type = "video",
             videoDuration = "short",
             videoEmbeddable = "true",
             maxResults=1,
           ).execute()
 
+        video_id = search_response['items'][0]['id']['videoId']
+
+
+
         result_vars = {
             'artist' :self.request.get('artist'),
             'region' : self.request.get('region'),
-            'search_response' : search_response
+            'search_response' : search_response,
+            'video_id':video_id
+
 
         }
         template = jinja_environment.get_template("templates/results.html")
