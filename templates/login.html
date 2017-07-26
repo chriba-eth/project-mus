@@ -1,25 +1,12 @@
 <title>MÜS</title>
 
-<h1>Hello from Cheep !</h1>
+<h1>Welcome MÜ !</h1>
 {% if current_user %}
 
 <p> Welcome, {{current_user}}!</p>
 
 <a href= "{{logout_url}}">Log Out</a><br>
 
-<form action ="/" method= "post">
-  <textarea  name="cheep" rows="8" cols="50" placeholder="Tell your friends what your up to"></textarea>
-  <button>Submit</button>
-
-</form>
-
 {% else %}
 
 <a href="{{login_url}}">Log In</a><br>
-
-{% endif %}
-{% for cheep in cheep %}
-  User: {{cheep.email}}<br>
-  Message:{{cheep.message}}<br>
-  Post_time: {{cheep.Post_time}}<br><br>
-{% endfor%}

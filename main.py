@@ -2,7 +2,7 @@ import webapp2
 import os
 import jinja2
 
-
+from google.appengine.api import users
 from google.appengine.ext import ndb
 from apiclient.discovery import build
 
@@ -31,6 +31,23 @@ class MainHandler(webapp2.RequestHandler):
     def get(self):
         template = jinja_environment.get_template("templates/home.html")
         self.response.write(template.render())
+
+class LoginHandler(webapp2.RequestHandler):
+    def get(self):
+        template = jinja_environment.get_template("templates/login.html")
+
+        current_user= users.get_current_user()
+        logout_url = users.create_logout_url('/')
+        login_url= users.create_login_url('/')
+
+
+        template_vars = {
+        'current_user':current_user,
+        'logout_url': logout_url,
+        'login_url': login_url,
+        }
+        self.response.write(template.render(template_vars))
+
 
 
 class ResultsHandler(webapp2.RequestHandler):
