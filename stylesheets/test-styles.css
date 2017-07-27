@@ -1,0 +1,36 @@
+body{
+  background-color: #049372;
+  margin:0;
+}
+
+
+header{
+  background-color: #336E7B;
+  color: white;
+
+  padding: 10px;
+  text-align: center;
+  margin-bottom: 50;
+  margin-top: 0;
+  top: 0;
+  left: 0;
+  font-family: roboto, sans-serif;
+  font-weight: lighter;
+  font-size: 40px;
+}
+
+
+
+textarea {
+    border-radius: 10px;
+    resize: none;
+    border: none;
+}
+
+#logo{
+  position: relative;
+}
+
+#userInfo{
+  text-align: right;
+}
