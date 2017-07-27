@@ -1,6 +1,9 @@
 import webapp2
 import os
 import jinja2
+import json
+import urllib2
+import re
 
 from google.appengine.api import users
 from google.appengine.ext import ndb
@@ -88,6 +91,7 @@ class ResultsHandler(webapp2.RequestHandler):
         }
         template = jinja_environment.get_template("templates/results.html")
         self.response.write(template.render(result_vars))
+        self.response.write(SongInfo(self.request.get('artist')))
 
 
 #
