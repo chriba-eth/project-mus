@@ -68,30 +68,38 @@ class ResultsHandler(webapp2.RequestHandler):
     def post(self):
         youtube = build(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION, developerKey=DEVELOPER_KEY)
 
+        genre = SongInfo(self.request.get('artist'))
+        genre = genre[0]
+        genre = genre.split('|')
+        genre = genre[0]
+
         search_response = youtube.search().list(
-            q=self.request.get('region') + self.request.get('artist'),
-            part= "id",
+            q=self.request.get("region") + genre,
+            part= "id, snippet",
             type = "video",
             videoDuration = "short",
             videoEmbeddable = "true",
+            #relevanceLanguage = self.request.get('language'),
             maxResults=1,
           ).execute()
 
         vid_id = search_response['items'][0]['id']['videoId']
-
+        title = search_response['items'][0]['snippet']['title']
 
 
         result_vars = {
             'artist' :self.request.get('artist'),
             'region' : self.request.get('region'),
             'search_response' : search_response,
-            'vidId':vid_id
+            'vidId':vid_id,
+            'title':title,
+            'genre':genre
 
 
         }
         template = jinja_environment.get_template("templates/results.html")
         self.response.write(template.render(result_vars))
-        self.response.write(SongInfo(self.request.get('artist')))
+
 
 
 #
@@ -117,7 +125,7 @@ def SongInfo(artist):
     pages = dictionary['query']['pages']
     page_text = pages.values()[0]['revisions'][0]['*']
     print page_text.encode('utf-8')
-    m = re.search(r'genre = {{([^}]+)}}', page_text, flags=re.MULTILINE)
+    m = re.search(r'genre\s+= {{([^}]+)}}', page_text, flags=re.MULTILINE)
     text = m.group(1)
     text = text.replace('[[',']]')
     text_genre = text.split(']]')
