@@ -143,6 +143,8 @@ def SongInfo(artist):
     page_text = pages.values()[0]['revisions'][0]['*']
     print page_text.encode('utf-8')
     m = re.search(r'[g|G]enre\s+=\s*{{([^}]+)}}', page_text, flags=re.MULTILINE)
+    if not m:
+        m = re.search(r'[g|G]enre\s*=\s*(\[\[[^\]]+\]\])', page_text, flags=re.MULTILINE)
     text = m.group(1)
     text = text.replace('[[',']]')
     text_genre = text.split(']]')

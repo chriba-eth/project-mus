@@ -46,6 +46,10 @@ textarea {
 h2{
   text-align: center;
   position: inherit;
-  font-family: futura;
+
   font-weight: lighter;
+}
+button{
+  text-align: center;
+  border: none;
 }
