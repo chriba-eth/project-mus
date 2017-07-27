@@ -22,26 +22,27 @@
       <form method = 'post' action = "/results">
         <textarea rows = '1' cols = '50' name = "artist" placeholder = "Who is your favorite artist?"></textarea><br>
         <input type = "radio" name = "region" value = "Latin American ">Latin America
-        <input type = "radio" name = "region" value = "Brasileiro ">Brazil
-        <input type = "radio" name = "region" value = "Francais ">France
+        <input type = "radio" name = "region" value = "Brazilian ">Brazil
+        <input type = "radio" name = "region" value = "French ">France
         <input type = "radio" name = "region" value = "German ">Germany
         <input type = "radio" name = "region" value = "Indian ">India
         <input type = "radio" name = "region" value = "Japanese ">Japan
         <input type = "radio" name = "region" value = "Korean ">Korea
         <input type = "radio" name = "region" value = "African ">Africa<br>
-        <button class = "submit">Submit</button>
+        <button id = "submit" class = "submit">Submit</button>
       </form>
     </header></p>
 
-    <div id = welcome>
-      <p> Project müs: Connecting the world through music.
-      </p>
-    </div>
+
+
+    {%if vidId%}
+
     <div id = results>
-    Here is your customly selected song from Youtube, catered to your music taste: <br>
+    You chose {{artist}} as your favorite artist.<br>
+    Here is your customly selected {{region}}song from Youtube, catered to your music taste: <br>
 
     Song Title: {{title}}<br>
-    {{genre}} + {{genre1}}
+    Genre: {{genre}} and {{genre1}}
 
 
     <div
@@ -52,6 +53,13 @@
 
     </div><br>
     </div>
+    {%else%}
+
+      <div id = welcome>
+        Project mus: Connecting the world through music.
+      </div>
+
+    {%endif%}
 
 
 

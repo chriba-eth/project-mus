@@ -39,6 +39,7 @@ class MainHandler(webapp2.RequestHandler):
         login_url= users.create_login_url('/')
 
 
+
         template_vars = {
         'current_user':current_user,
         'logout_url': logout_url,
@@ -122,7 +123,8 @@ class ResultsHandler(webapp2.RequestHandler):
             'vidId':vid_id,
             'title':title,
             'genre':genre,
-            'genre1':genre1
+            'genre1':genre1,
+
 
             #'videos':videos
 
@@ -149,6 +151,7 @@ class ResultsHandler(webapp2.RequestHandler):
 #         template =jinja_enviroment.get_template()
 #         self.response.write(template.render())
 def SongInfo(artist):
+    name_artist = artist
     artist = artist.title().replace(' ', '_')
     f = urllib2.urlopen('https://en.wikipedia.org/w/api.php?action=query&titles=' + artist + '&prop=revisions&rvprop=content&format=json')
     dictionary = json.load(f)
