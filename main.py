@@ -68,15 +68,26 @@ class ResultsHandler(webapp2.RequestHandler):
     def post(self):
         youtube = build(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION, developerKey=DEVELOPER_KEY)
 
-        genre = SongInfo(self.request.get('artist'))
+        genre_list = SongInfo(self.request.get('artist'))
+        genre1 = " "
+        genre = genre_list[0]
+        genre = genre.split('mu')
+        #genre = genre.split('|')
         genre = genre[0]
-        genre = genre.split('|')
-        genre = genre[0]
+        if len(genre_list) > 1:
+            genre1 = genre_list
+            genre1 = genre1[1]
+            genre1 = genre1.split('mu')
+            genre1 = genre1[0]
+
+
+
+
 
         region = self.request.get('region')
 
         search_response = youtube.search().list(
-            q= region + genre,
+            q= region + genre + genre1,
             part= "id, snippet",
             type = "video",
             videoDuration = "short",
@@ -111,6 +122,8 @@ class ResultsHandler(webapp2.RequestHandler):
             'vidId':vid_id,
             'title':title,
             'genre':genre,
+            'genre1':genre1
+
             #'videos':videos
 
         }
@@ -142,9 +155,10 @@ def SongInfo(artist):
     pages = dictionary['query']['pages']
     page_text = pages.values()[0]['revisions'][0]['*']
     print page_text.encode('utf-8')
-    m = re.search(r'[g|G]enre\s+=\s*{{([^}]+)}}', page_text, flags=re.MULTILINE)
+    m = re.search(r'[g|G]enre\s+=\s*{{([^}]+)}}', page_text, flags=re.MULTILINE) #Grabs multiple genre artists
     if not m:
         m = re.search(r'[g|G]enre\s*=\s*(\[\[[^\]]+\]\])', page_text, flags=re.MULTILINE)
+        #grabs single genre artists
     text = m.group(1)
     text = text.replace('[[',']]')
     text_genre = text.split(']]')
