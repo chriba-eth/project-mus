@@ -106,6 +106,26 @@ class ResultsHandler(webapp2.RequestHandler):
 #     def get(self):
 #         template =jinja_enviroment.get_template()
 #         self.response.write(template.render())
+def SongInfo(artist):
+    artist = artist.title().replace(' ', '_')
+    f = urllib2.urlopen('https://en.wikipedia.org/w/api.php?action=query&titles=' + artist + '&prop=revisions&rvprop=content&format=json')
+    dictionary = json.load(f)
+    pages = dictionary['query']['pages']
+    page_text = pages.values()[0]['revisions'][0]['*']
+    print page_text.encode('utf-8')
+    m = re.search(r'genre = {{([^}]+)}}', page_text, flags=re.MULTILINE)
+    text = m.group(1)
+    text = text.replace('[[',']]')
+    text_genre = text.split(']]')
+    actual_genres = []
+    for (i, genre) in enumerate(text_genre):
+        if i % 2 == 1:
+            actual_genres.append(genre)
+
+    return actual_genres
+
+
+
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
