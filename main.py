@@ -73,19 +73,36 @@ class ResultsHandler(webapp2.RequestHandler):
         genre = genre.split('|')
         genre = genre[0]
 
+        region = self.request.get('region')
+
         search_response = youtube.search().list(
-            q=self.request.get("region") + genre,
+            q= region + genre,
             part= "id, snippet",
             type = "video",
             videoDuration = "short",
             videoEmbeddable = "true",
             #relevanceLanguage = self.request.get('language'),
+            videoCategoryId = "10",
+            #regionCode = "FR"
             maxResults=1,
           ).execute()
-
+        #videos = []
+        #for response in search_response['items']:
+        #    video = {
+        #        'vidId':response['id']['videoId'],
+        #        'title':response['snippet']['title']
+        #    }
+        #    videos.append(video)
+            #    }
         vid_id = search_response['items'][0]['id']['videoId']
+
         title = search_response['items'][0]['snippet']['title']
 
+        #video = {
+            #'vidId':search_response['items'][0]['id']['videoId'],
+            #'title':search_response['items'][0]['snippet']['title']
+        #}
+        #videos.append(video)
 
         result_vars = {
             'artist' :self.request.get('artist'),
@@ -93,11 +110,11 @@ class ResultsHandler(webapp2.RequestHandler):
             'search_response' : search_response,
             'vidId':vid_id,
             'title':title,
-            'genre':genre
-
+            'genre':genre,
+            #'videos':videos
 
         }
-        template = jinja_environment.get_template("templates/results.html")
+        template = jinja_environment.get_template("templates/home.html")
         self.response.write(template.render(result_vars))
 
 
@@ -125,7 +142,7 @@ def SongInfo(artist):
     pages = dictionary['query']['pages']
     page_text = pages.values()[0]['revisions'][0]['*']
     print page_text.encode('utf-8')
-    m = re.search(r'genre\s+= {{([^}]+)}}', page_text, flags=re.MULTILINE)
+    m = re.search(r'[g|G]enre\s+=\s*{{([^}]+)}}', page_text, flags=re.MULTILINE)
     text = m.group(1)
     text = text.replace('[[',']]')
     text_genre = text.split(']]')
