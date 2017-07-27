@@ -3,23 +3,24 @@
   <head>
     <meta charset="utf-8">
     <title></title>
-
+    Here is your custom made playlist catered to your music taste: <br>
   </head>
   <body>
-    <div
 
-        data-video=video_id
+    <div
+        data-video= "{{vidId}}"
         data-autoplay="0"
         data-loop="1"
         id="youtube-audio">
     </div>
+
+
+        
     <script src="https://www.youtube.com/iframe_api"></script>
     <script src="https://cdn.rawgit.com/labnol/files/master/yt.js"></script>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="scripts/home.js"></script>
 
-
-
-    Here is your custom made playlist catered to your music taste: <br>
-    {{search_response}}
   </body>
 </html>

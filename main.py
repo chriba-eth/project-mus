@@ -74,7 +74,7 @@ class ResultsHandler(webapp2.RequestHandler):
             maxResults=1,
           ).execute()
 
-        video_id = search_response['items'][0]['id']['videoId']
+        vid_id = search_response['items'][0]['id']['videoId']
 
 
 
@@ -82,7 +82,7 @@ class ResultsHandler(webapp2.RequestHandler):
             'artist' :self.request.get('artist'),
             'region' : self.request.get('region'),
             'search_response' : search_response,
-            'video_id':video_id
+            'vidId':vid_id
 
 
         }
