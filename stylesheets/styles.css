@@ -31,14 +31,35 @@ header{
 
 }
 
-textarea {
-    border-radius: 10px;
-    resize: none;
-    border: none;
+#welcome{
+  text-align: center;
+  margin-bottom: 50;
+  margin-top: 0;
+  top: 0;
+  left: 0;
+  font-family: roboto, sans-serif;
+  font-weight: lighter;
+  font-size: 15px;
+
 }
+
+textarea {
+    /*border-radius: 10px;*/
+    resize: none;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    background: transparent;
+    color: white;
+
+
+}
+
+
 
 #logo{
   position: relative;
+  margin-top: -5%;
 }
 
 #userInfo{
@@ -47,10 +68,17 @@ textarea {
 h2{
   text-align: center;
   position: inherit;
-
+  color: #663300;
   font-weight: lighter;
 }
 button{
   text-align: center;
+  border: none;
+  background-color: #049372;
+  color: white;
+}
+select{
+  background-color: black;
+  color: white;
   border: none;
 }

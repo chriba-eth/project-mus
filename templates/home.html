@@ -6,7 +6,7 @@
   </head>
   <body>
     <header>
-      <div id = "userInfo">
+      <!-- <div id = "userInfo">
         {% if current_user %}
         Welcome, {{current_user}}!
         <a href= "{{logout_url}}">Log Out</a><br>
@@ -15,21 +15,26 @@
         {% else %}
         <a href="{{login_url}}">Log In</a><br>
         {% endif %}
-      </div>
+      </div> -->
       <h2>müs</h2>
       <img id = "logo" src="images/logo.png" width="100" height"100" alt="müs logo">
 
       <form method = 'post' action = "/results">
         <textarea rows = '1' cols = '50' name = "artist" placeholder = "Who is your favorite artist?"></textarea><br>
-        <input type = "radio" name = "region" value = "Latin American ">Latin America
-        <input type = "radio" name = "region" value = "Brazilian ">Brazil
-        <input type = "radio" name = "region" value = "French ">France
-        <input type = "radio" name = "region" value = "German ">Germany
-        <input type = "radio" name = "region" value = "Indian ">India
-        <input type = "radio" name = "region" value = "Japanese ">Japan
-        <input type = "radio" name = "region" value = "Korean ">Korea
-        <input type = "radio" name = "region" value = "African ">Africa<br>
+        <select name = "region">
+          <option value = "Latin American ">Latin America</option>
+          <option value = "Brazilian ">Brazil</option>
+          <option value = "French ">France</option>
+          <option value = "German ">Germany</option>
+          <option value = "Indian ">India</option>
+          <option value = "Japanese ">Japan</option>
+          <option value = "Korean ">Korea</option>
+          <option value = "African ">Africa</option>
+      </select>
+        
+        <br>
         <button id = "submit" class = "submit">Submit</button>
+
       </form>
     </header></p>
 
@@ -56,7 +61,7 @@
     {%else%}
 
       <div id = welcome>
-        Project mus: Connecting the world through music.
+        <p>Welcome to Project müs! Our mission is to connect the world through music by finding similar songs to your musical taste from a different language and region of the world. Type in your favorite artist and select a region in the world to explore!</p>
       </div>
 
     {%endif%}
