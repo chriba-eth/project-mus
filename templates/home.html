@@ -31,7 +31,7 @@
           <option value = "Korean ">Korea</option>
           <option value = "African ">Africa</option>
       </select>
-        
+
         <br>
         <button id = "submit" class = "submit">Submit</button>
 
@@ -47,8 +47,14 @@
     Here is your customly selected {{region}}song from Youtube, catered to your music taste: <br>
 
     Song Title: {{title}}<br>
-    Genre: {{genre}} and {{genre1}}
+    <!-- Genre: {{genre}} and {{genre1}} -->
 
+      {%if genre1 != " " %}
+      Genres: {{genre}} and {{genre1}}
+
+      {%else%}
+      Genre: {{genre}}
+      {%endif%}
 
     <div
         data-video= "{{vidId}}"

@@ -124,6 +124,7 @@ class ResultsHandler(webapp2.RequestHandler):
             'title':title,
             'genre':genre,
             'genre1':genre1,
+            'genre_list':genre_list
 
 
             #'videos':videos
