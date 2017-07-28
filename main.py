@@ -5,6 +5,7 @@ import json
 import urllib2
 import re
 
+
 from google.appengine.api import users
 from google.appengine.ext import ndb
 from apiclient.discovery import build
@@ -153,16 +154,23 @@ class ResultsHandler(webapp2.RequestHandler):
 #         self.response.write(template.render())
 def SongInfo(artist):
     name_artist = artist
-    artist = artist.title().replace(' ', '_')
+    artist = artist.replace(' ', '_')
     f = urllib2.urlopen('https://en.wikipedia.org/w/api.php?action=query&titles=' + artist + '&prop=revisions&rvprop=content&format=json')
     dictionary = json.load(f)
+    #logging.info(dictionary)
     pages = dictionary['query']['pages']
-    page_text = pages.values()[0]['revisions'][0]['*']
-    print page_text.encode('utf-8')
-    m = re.search(r'[g|G]enre\s+=\s*{{([^}]+)}}', page_text, flags=re.MULTILINE) #Grabs multiple genre artists
+    pg_values = pages.values()[0]
+    #print pg_values.keys()
+    revisions_list = pg_values['revisions']
+    first_revision_list = revisions_list[0]
+    desired_genre = first_revision_list['*']
+    print "desired_genre", desired_genre.encode('utf-8')
+
+    # genre = [[Hip hop music|Hip hop]]\n
+    m = re.search(r'[g|G]enre\s*=\s*{{([^}]+)}}', desired_genre, flags=re.MULTILINE) #searches for multiple genre artists
     if not m:
-        m = re.search(r'[g|G]enre\s*=\s*(\[\[[^\]]+\]\])', page_text, flags=re.MULTILINE)
-        #grabs single genre artists
+        m = re.search(r'[g|G]enre\s*=\s*(\[\[[^\]]+\]\])', desired_genre, flags=re.MULTILINE) #searches for only one genre artists
+
     text = m.group(1)
     text = text.replace('[[',']]')
     text_genre = text.split(']]')
@@ -172,6 +180,7 @@ def SongInfo(artist):
             actual_genres.append(genre)
 
     return actual_genres
+
 
 
 
