@@ -3,8 +3,14 @@
 body{
   background-color: #049372;
   margin:0;
+  zoom: 1.75;
+ -moz-transform: scale(1.75);
+ -moz-transform-origin: 0 0;
 }
 
+#youtube-audio{
+  zoom: 0.5;
+}
 
 header{
   background-color: #336E7B;
@@ -18,7 +24,7 @@ header{
   left: 0;
   font-family: roboto, sans-serif;
   font-weight: lighter;
-  font-size: 20px;
+  font-size: 15px;
 }
 
 #results{
@@ -29,7 +35,7 @@ header{
   left: 0;
   font-family: roboto, sans-serif;
   font-weight: lighter;
-  font-size: 20px;
+  font-size: 15px;
 
 }
 
@@ -41,7 +47,7 @@ header{
   left: 0;
   font-family: roboto, sans-serif;
   font-weight: lighter;
-  font-size: 20px;
+  font-size: 15px;
 
 }
 
@@ -61,7 +67,7 @@ textarea {
 
 #logo{
   position: relative;
-  margin-top: -5%;
+  margin-top: -7.5%;
 }
 
 #userInfo{
@@ -78,11 +84,13 @@ button{
   border: none;
   background-color: #049372;
   color: white;
+
 }
 select{
   background-color: #049372;
   color: white;
   border: none;
   text-align: center;
+
 
 }
